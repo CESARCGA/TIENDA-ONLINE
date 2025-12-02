@@ -217,11 +217,13 @@ button{
 }
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 .product-card {
   background: #ffffff;
+  width: 100%;
+  border: solid 1px blue;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 6px 16px rgba(2, 6, 23, 0.08);
@@ -393,7 +395,7 @@ button{
 }
 @media (min-width: 1000px) {
   .products-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
   .offers-grid {
     grid-template-columns: repeat(3, 1fr);

@@ -131,11 +131,13 @@
 /* Products grid */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 .product-card {
   background: #fff;
+  width: 100%;
+  border: solid 1px blue;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 6px 16px rgba(2, 6, 23, 0.08);
@@ -264,7 +266,7 @@
   .products-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1000px) {
-  .products-grid { grid-template-columns: repeat(3, 1fr); }
+  .products-grid { grid-template-columns: repeat(4, 1fr); }
 }
 @media (max-width: 520px) {
   .search input { width: 120px; }
