@@ -330,6 +330,7 @@ export default function Inicio() {
             <button onClick={() => document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' })}>Productos</button>
             <button onClick={() => document.getElementById('ofertas')?.scrollIntoView({ behavior: 'smooth' })}>Ofertas</button>
             <button onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}>Contacto</button>
+            <button onClick={() => navigate("/mispedidos")}>Mis pedidos </button>
           </nav>
         </div>
 

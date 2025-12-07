@@ -7,6 +7,7 @@ import Register from './Registre.jsx'
 import Inicio from './Inicio.jsx'
 import Admin from './Admin.jsx';  
 import Panel from './Panel.jsx';
+import MisPedidos from './MisPedidos.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/inicio" element={<Inicio />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/panel" element={<Panel />} />
+      <Route path="/mispedidos" element={<MisPedidos />} />
     </Routes>
   </BrowserRouter>
 )

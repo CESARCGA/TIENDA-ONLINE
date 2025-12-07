@@ -284,7 +284,7 @@ export default function Admin() {
         </div>
       </header>
 
-      <main className="main-content">
+      <main className="main-content2">
         <section className="hero small">
           <div>
             <h1>Panel de Administración — Tienda</h1>
@@ -308,7 +308,7 @@ export default function Admin() {
 
         <section id="productos" className="products-section admin-products">
           <h2>Productos</h2>
-          <div className="products-grid">
+          <div className="products-grid2">
             {filtered.map(p => (
               <article key={p.id ?? p.id_producto} className="product-card admin-card">
                 <img src={prodImg(p)} />

@@ -516,8 +516,64 @@ app.post("/crear_orden", async (req, res) => {
   }
 });
 
+//obtener los pedidos del usuario
+app.get("/mis_pedidos/:id", async (req, res) => {
+    const idUsuario = req.params.id;
 
-app.use("/imagenes", express.static("imagenes"));
+    const sql = `
+        SELECT 
+            o.id_orden,
+            o.total,
+            o.fecha_orden,
+            o.estado,
+            od.id_producto,
+            p.nombre_producto,
+            p.imagen,
+            od.cantidad,
+            od.subtotal
+        FROM ordenes o
+        INNER JOIN orden_detalle od ON o.id_orden = od.id_orden
+        INNER JOIN productos p ON od.id_producto = p.id_producto
+        WHERE o.id_usuario = ?
+        ORDER BY o.fecha_orden DESC
+    `;
+    try {
+        const [results] = await pool.query(sql, [idUsuario]);  // 👈 AQUÍ EL CAMBIO IMPORTANTE
+
+        const pedidos = {};
+
+        results.forEach(row => {
+            if (!pedidos[row.id_orden]) {
+                pedidos[row.id_orden] = {
+                    id_orden: row.id_orden,
+                    total: row.total,
+                    fecha_orden: row.fecha_orden,
+                    estado: row.estado,
+                    productos: []
+                };
+            }
+
+            pedidos[row.id_orden].productos.push({
+                id_producto: row.id_producto,
+                nombre_producto: row.nombre_producto,
+                imagen: row.imagen,
+                cantidad: row.cantidad,
+                subtotal: row.subtotal
+            });
+        });
+
+        res.json(Object.values(pedidos));
+
+    } catch (err) {
+        console.log("ERROR al obtener pedidos:", err);
+        res.status(500).json({ error: "Error al obtener pedidos" });
+    }
+});
+
+
+
+app.use("/imagenes", express.static(path.join(__dirname, "imagenes")));
+
 
 
 const PORT = process.env.PORT || 5000;
