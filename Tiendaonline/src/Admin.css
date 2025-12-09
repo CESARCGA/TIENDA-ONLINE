@@ -211,9 +211,12 @@
   justify-content: center;
   z-index: 80;
 }
-.modal {
-  width: 720px;
-  max-width: 96%;
+.modal2 {
+  max-width: 900px;
+  width: 90%;
+  border-radius: 8px;
+  padding: 0;
+  overflow: visible;
   background: #fff;
   border-radius: 16px;
   padding: 20px;
@@ -239,7 +242,7 @@
   max-height: 70vh;
   overflow: auto;
 }
-.modal-body label {
+.modal-body.label {
   font-weight: 600;
   color: #701a75;
   margin-top: 6px;
@@ -258,6 +261,55 @@
 .modal-body select:focus {
   box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.25);
   outline: none;
+}
+.modal-body.grid-modal {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  padding: 18px;
+  align-items: start;
+}
+
+/* columnas y filas internas */
+.form-main { display: flex; flex-direction: column; gap: 12px; }
+.row.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* campos */
+.form-group label { display: block; margin-bottom: 6px; font-weight: 600; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  resize: vertical;
+}
+
+/* panel de imagen */
+.form-aside label { display:block; margin-bottom:8px; font-weight:600; }
+.form-aside input[type="file"] { width:100%; }
+.preview-container {
+  margin-top: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e1e1e1;
+}
+.preview-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* acciones al final del form ocupando toda la anchura del modal */
+.modal-actions {
+  grid-column: 1 / -1;
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  padding: 12px 18px 18px;
 }
 
 /* Responsive grids */

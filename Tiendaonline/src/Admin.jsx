@@ -257,6 +257,8 @@ export default function Admin() {
             <button onClick={() => setView('products')}>Tienda</button>
             <button onClick={() => navigate('/panel')}>Panel</button>
             <button onClick={() => navigate('/')}>Ver tienda pública</button>
+            <button onClick={() => navigate('/pedidosadmin')}>Pedidos</button>
+            <button onClick={() => { localStorage.removeItem('usuario'); navigate('/login'); }}>Cerrar sesión</button>
           </nav>
         </div>
 
@@ -320,7 +322,6 @@ export default function Admin() {
                     <div className="actions">
                       <button className="small" onClick={() => openEditModal(p)}>Actualizar</button>
                       <button className="small outline danger" onClick={() => handleDeleteProduct(p)}>Eliminar</button>
-                      <button className="small outline" onClick={() => alert('Ver detalles (por implementar)')}>Detalles</button>
                     </div>
                   </div>
                 </div>
@@ -348,7 +349,7 @@ export default function Admin() {
       </main>
 
       {/* Modal para Crear/Actualizar producto */}
-      {modalOpen && (
+      {/*{modalOpen && (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal">
             <header className="modal-header">
@@ -395,6 +396,76 @@ export default function Admin() {
 
 
               <div className="form-actions" style={{ marginTop: 12 }}>
+                <button type="submit">{modalMode === 'add' ? 'Crear Producto' : 'Guardar cambios'}</button>
+                <button type="button" className="outline" onClick={() => { setModalOpen(false); setEditingProduct(null) }}>Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}*/}
+      {modalOpen && (
+        <div className="modal-overlay" role="dialog" aria-modal="true">
+          <div className="modal2">
+            <header className="modal-header">
+              <h3>{modalMode === 'add' ? 'Agregar Producto' : 'Actualizar Producto'}</h3>
+              <button className="close" onClick={() => { setModalOpen(false); setEditingProduct(null) }}>✕</button>
+            </header>
+
+            <form className="modal-body grid-modal" onSubmit={handleModalSave}>
+              <div className="form-main">
+                <div className="row two">
+                  <div className="form-group">
+                    <label>Nombre</label>
+                    <input required value={productForm.name} onChange={e => setProductForm({ ...productForm, name: e.target.value })} />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Precio</label>
+                    <input required type="number" value={productForm.price} onChange={e => setProductForm({ ...productForm, price: e.target.value })} />
+                  </div>
+                </div>
+
+                <div className="row two">
+                  <div className="form-group">
+                    <label>Stock</label>
+                    <input required type="number" value={productForm.stock} onChange={e => setProductForm({ ...productForm, stock: e.target.value })} />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Categoría</label>
+                    <select required value={productForm.category} onChange={e => setProductForm({ ...productForm, category: e.target.value })}>
+                      <option value="">Seleccionar...</option>
+                      {categories.map(cat => (
+                        <option key={cat.id_categoria} value={cat.id_categoria}>{cat.nombre_categoria}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>Descripción</label>
+                  <textarea value={productForm.description} onChange={e => setProductForm({ ...productForm, description: e.target.value })} />
+                </div>
+              </div>
+
+              <aside className="form-aside">
+                <label>Imagen del producto</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                />
+                {productForm.image && (
+                  <div className="preview-container">
+                    <img
+                      src={productForm.image.startsWith('http') ? productForm.image : `http://localhost:5000${productForm.image}`}
+                      alt="Vista previa"
+                    />
+                  </div>
+                )}
+              </aside>
+
+              <div className="form-actions modal-actions">
                 <button type="submit">{modalMode === 'add' ? 'Crear Producto' : 'Guardar cambios'}</button>
                 <button type="button" className="outline" onClick={() => { setModalOpen(false); setEditingProduct(null) }}>Cancelar</button>
               </div>

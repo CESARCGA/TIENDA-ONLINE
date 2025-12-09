@@ -153,7 +153,7 @@ export default function Inicio() {
     // requiere login para guardar en BD
     if (!user) {
       alert('Debes iniciar sesión para agregar al carrito')
-      navigate('/')
+      navigate('/login')
       return
     }
 
@@ -404,7 +404,6 @@ export default function Inicio() {
                     <strong>${prodPrice(p)}</strong>
                     <div className="actions">
                       <button className="small" onClick={() => addToCart(p)}>Añadir</button>
-                      <button className="small outline" onClick={() => alert('Ver detalles (por implementar)')}>Detalles</button>
                     </div>
                   </div>
                 </div>

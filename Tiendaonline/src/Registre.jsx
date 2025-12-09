@@ -97,7 +97,6 @@ export default function Register() {
           <div className="form-group">
             <label htmlFor="name">Nombre</label>
             <div className="input-group">
-              <i className="input-icon">👤</i>
               <input
                 id="name"
                 value={name}
@@ -112,7 +111,6 @@ export default function Register() {
           <div className="form-group">
             <label htmlFor="email">Correo electrónico</label>
             <div className="input-group">
-              <i className="input-icon">📧</i>
               <input
                 id="email"
                 type="email"

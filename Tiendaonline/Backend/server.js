@@ -570,6 +570,81 @@ app.get("/mis_pedidos/:id", async (req, res) => {
     }
 });
 
+//pedidos para admin
+app.get("/pedidosadmin", async (req, res) => {
+    const sql = `
+        SELECT
+            u.id_usuario,
+            u.nombre AS nombre_usuario,
+            u.correo,
+            o.id_orden,
+            o.total,
+            o.fecha_orden,
+            o.estado,
+            od.id_producto,
+            p.nombre_producto,
+            p.imagen,
+            od.cantidad,
+            od.subtotal
+        FROM ordenes o
+        INNER JOIN usuarios u ON o.id_usuario = u.id_usuario
+        INNER JOIN orden_detalle od ON o.id_orden = od.id_orden
+        INNER JOIN productos p ON od.id_producto = p.id_producto
+        ORDER BY u.id_usuario, o.fecha_orden DESC
+    `;
+
+    try {
+        const [rows] = await pool.query(sql);
+
+        const usuarios = {};
+
+        rows.forEach(row => {
+            // Crear usuario si no existe
+            if (!usuarios[row.id_usuario]) {
+                usuarios[row.id_usuario] = {
+                    id_usuario: row.id_usuario,
+                    nombre: row.nombre_usuario,
+                    correo: row.correo,
+                    pedidos: {}
+                };
+            }
+
+            // Crear pedido si no existe
+            if (!usuarios[row.id_usuario].pedidos[row.id_orden]) {
+                usuarios[row.id_usuario].pedidos[row.id_orden] = {
+                    id_orden: row.id_orden,
+                    total: row.total,
+                    fecha_orden: row.fecha_orden,
+                    estado: row.estado,
+                    productos: []
+                };
+            }
+
+            // Agregar producto
+            usuarios[row.id_usuario].pedidos[row.id_orden].productos.push({
+                id_producto: row.id_producto,
+                nombre_producto: row.nombre_producto,
+                imagen: row.imagen,
+                cantidad: row.cantidad,
+                subtotal: row.subtotal
+            });
+        });
+
+        // Convertir pedidos de objeto → array
+        const resultado = Object.values(usuarios).map(usuario => ({
+            ...usuario,
+            pedidos: Object.values(usuario.pedidos)
+        }));
+
+        res.json(resultado);
+
+    } catch (err) {
+        res.status(500).json({ error: "Error al obtener pedidos admin", err });
+    }
+});
+
+
+
 
 
 app.use("/imagenes", express.static(path.join(__dirname, "imagenes")));
