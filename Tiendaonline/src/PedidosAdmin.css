@@ -29,3 +29,15 @@
 .producto-info p { margin:2px 0; font-size:13px; }
 .pedido-footer { display:flex; justify-content:space-between; font-weight:600; margin-top:8px; }
 /* ...existing code... */
+.logo {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.logo img {
+  width: 100px;
+  height: 60px;
+  object-fit: contain;
+ 
+}

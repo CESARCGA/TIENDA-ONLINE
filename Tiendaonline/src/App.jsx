@@ -100,9 +100,13 @@ function App() {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <h1>¡Bienvenido!</h1>
-          <p>Inicia sesión para continuar</p>
-        </div>
+  <div className="header-left">
+    <h1>¡Bienvenido!</h1>
+    <p>Inicia sesión para continuar</p>
+  </div>
+
+  <img src="/logo.png" alt="Logo" className="login-logo" />
+</div>
 
         <form onSubmit={handleLogin} className="login-form">
           <div className="form-group">

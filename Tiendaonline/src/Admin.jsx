@@ -252,7 +252,9 @@ export default function Admin() {
       {/* Nav fijo similar a Inicio */}
       <header className="navbar">
         <div className="nav-left">
-          <button className="logo" onClick={() => navigate('/')}>TiendaTec - Admin</button>
+          <button className="logo" onClick={() => navigate('/')}>
+          <img src="/logo.png" alt="Logo" />
+          </button>
           <nav className="nav-links">
             <button onClick={() => setView('products')}>Tienda</button>
             <button onClick={() => navigate('/panel')}>Panel</button>

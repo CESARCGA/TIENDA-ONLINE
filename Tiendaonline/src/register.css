@@ -22,12 +22,31 @@
 /* Encabezado */
 .login-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 10px;
+}
+
+.login-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Texto alineado a la izquierda */
+.header-left {
+  text-align: left;
+}
+
+/* Logo alineado a la derecha */
+.login-logo {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
 }
 
 .login-header h1 {
   margin: 0;
-  font-size: 28px;
+  font-size: 40px;
   color: #9013c2;
   font-weight: 700;
 }
@@ -42,7 +61,7 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
 .form-group {

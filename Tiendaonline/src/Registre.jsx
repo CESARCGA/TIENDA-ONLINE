@@ -89,9 +89,14 @@ export default function Register() {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <h1>Crear cuenta</h1>
-          <p>Completa tus datos para registrarte</p>
-        </div>
+  <div className="header-left">
+    <h1>Crear cuenta</h1>
+    <p>Completa tus datos para registrarte</p>
+  </div>
+
+  <img src="/logo.png" className="login-logo" alt="Logo" />
+</div>
+
 
         <form onSubmit={handleRegister} className="login-form">
           <div className="form-group">

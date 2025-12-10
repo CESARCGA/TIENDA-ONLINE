@@ -48,8 +48,9 @@ const MisPedidos = () => {
       {/* NAV ALWAYS VISIBLE */}
       <header className="navbar">
         <div className="nav-left">
-          <button className="logo" onClick={() => navigate('/inicio')}>TiendaTec</button>
-
+          <button className="logo" onClick={() => navigate('/inicio')}>
+<img src="/logo.png" alt="Logo" />
+</button>
           <nav className="nav-links">
             <button onClick={() => navigate("/inicio")}>Inicio</button>
             <button onClick={() => navigate("/inicio")}>Productos</button>

@@ -21,12 +21,16 @@
 }
 .nav-left { display: flex; align-items: center; gap: 16px; }
 .logo {
-  font-weight: 800;
-  font-size: 1.2rem;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  color: #9013c2;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.logo img {
+  width: 100px;
+  height: 60px;
+  object-fit: contain;
+
 }
 .logo:hover {
   color: #a855f7;

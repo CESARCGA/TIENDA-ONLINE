@@ -45,7 +45,7 @@ const PedidosAdmin = () => {
       <header className="navbar">
         <div className="nav-left">
           <button className="logo" onClick={() => navigate('/admin')}>
-            TiendaTec - Admin
+           <img src="/logo.png" alt="Logo" />
           </button>
 
           <nav className="nav-links">

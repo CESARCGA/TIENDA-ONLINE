@@ -324,7 +324,10 @@ export default function Inicio() {
     <div className="inicio-container">
       <header className="navbar">
         <div className="nav-left">
-          <button className="logo" onClick={() => navigate('/inicio')}>TiendaTec</button>
+          <button className="logo" onClick={() => navigate('/inicio')}>
+  <img src="/logo.png" alt="Logo" />
+</button>
+
           <nav className="nav-links">
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Inicio</button>
             <button onClick={() => document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' })}>Productos</button>

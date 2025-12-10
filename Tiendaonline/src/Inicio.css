@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: px;
+  height: 80px; /* ✔ Altura correcta */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,9 +22,8 @@
   z-index: 40;
   transition: background 0.3s ease;
 }
-.navbar:hover {
-  background: rgba(255, 255, 255, 0.98);
-}
+
+
 
 .nav-left {
   display: flex;
@@ -33,14 +32,19 @@
 }
 
 .logo {
-  font-weight: 800;
-  font-size: 1.15rem;
-  color: #9013c2;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  transition: color 0.3s;
+  border: none;
+  background: transparent;
+  padding: 0;
 }
+
+.logo img {
+  width: 100px;
+  height: 60px;
+  object-fit: contain;
+ 
+}
+
+
 .logo:hover {
   color: #9013c2;
 }
