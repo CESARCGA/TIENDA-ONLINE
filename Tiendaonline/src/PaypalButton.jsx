@@ -15,7 +15,7 @@ export default function PayPalButton({ amount, onSuccess }) {
         },
         onApprove: async (data, actions) => {
             return actions.order.capture().then(async (details) => {
-                alert("✅ Pago completado por " + details.payer.name.given_name);
+                //alert("✅ Pago completado por " + details.payer.name.given_name);
 
                 // Enviar datos al backend
                 try {

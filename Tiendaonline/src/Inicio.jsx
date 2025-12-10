@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Inicio.css'
 import PayPalButton from './PaypalButton.jsx'
+import ChatBot from './componente/ChatBot.jsx'
 
 export default function Inicio() {
   const navigate = useNavigate()
@@ -20,6 +21,16 @@ export default function Inicio() {
   const [paymentMethods, setPaymentMethods] = useState([])
   const [checkoutOpen, setCheckoutOpen] = useState(false)
   const [selectedPayment, setSelectedPayment] = useState('')
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState(null)
+
+  function openModal(producto) {
+    setSelectedProduct(producto)
+    setModalOpen(true)
+  }
+
+
 
   // Fetch data on component mount
   useEffect(() => {
@@ -325,8 +336,8 @@ export default function Inicio() {
       <header className="navbar">
         <div className="nav-left">
           <button className="logo" onClick={() => navigate('/inicio')}>
-  <img src="/logo.png" alt="Logo" />
-</button>
+            <img src="/logo.png" alt="Logo" />
+          </button>
 
           <nav className="nav-links">
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Inicio</button>
@@ -353,7 +364,7 @@ export default function Inicio() {
                 <button onClick={() => { localStorage.removeItem('usuario'); setUser(null); navigate('/') }}>Cerrar sesión</button>
               </div>
             ) : (
-              <button className="profile-btn" onClick={() => navigate('/')}>Perfil</button>
+              <button className="profile-btn" onClick={() => navigate('/login')}>Perfil</button>
             )}
 
             <button className="cart-btn" onClick={() => setCartOpen(true)} aria-label="Abrir carrito">
@@ -407,6 +418,9 @@ export default function Inicio() {
                     <strong>${prodPrice(p)}</strong>
                     <div className="actions">
                       <button className="small" onClick={() => addToCart(p)}>Añadir</button>
+                      <button className="small outline" onClick={() => openModal(p)}>
+                        Ver más
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -556,6 +570,49 @@ export default function Inicio() {
           </div>
         </div>
       )}
+      {/* Modal de detalle de producto */}
+      {modalOpen && selectedProduct && (
+        <div className="modal-overlay" role="dialog" aria-modal="true">
+          <div className="modal-producto">
+
+            <header className="modal-header">
+              <h3>{prodName(selectedProduct)}</h3>
+              <button className="close" onClick={() => setModalOpen(false)}>✕</button>
+            </header>
+
+            <div className="modal-content">
+
+              {/* IMAGEN */}
+              <div className="modal-left">
+                <img
+                  src={prodImg(selectedProduct)}
+                  alt={prodName(selectedProduct)}
+                  className="modal-img"
+                />
+              </div>
+
+              {/* INFORMACIÓN */}
+              <div className="modal-right">
+                <p><strong>Precio:</strong> ${prodPrice(selectedProduct)}</p>
+                <p><strong>Disponible:</strong> {selectedProduct.stock ?? selectedProduct.existencia ?? "No disponible"}</p>
+
+                <p><strong>Descripción:</strong></p>
+                <div className="modal-descripcion">
+                  {selectedProduct.descripcion ?? selectedProduct.descripcion_producto ?? "Sin descripción"}
+                </div>
+              </div>
+
+            </div>
+
+            <footer className="modal-footer">
+              <button onClick={() => addToCart(selectedProduct)}>Agregar al carrito</button>
+              <button className="outline" onClick={() => setModalOpen(false)}>Cerrar</button>
+            </footer>
+
+          </div>
+        </div>
+      )}
+      <ChatBot />
     </div>
   )
 }

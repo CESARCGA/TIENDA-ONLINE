@@ -206,14 +206,50 @@
 }
 
 /* Modal */
-.modal-overlay {
+.modal-overlay2 {
   position: fixed;
   inset: 0;
-  background: rgba(2, 6, 23, 0.4);
+  background: rgba(0,0,0,0.55);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 80;
+  align-items: center;
+  z-index: 2000;
+}
+
+.buttons-modal2{
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+}
+
+
+.delete-modal {
+  width: 320px;
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  text-align: center;
+  animation: slideDown 0.35s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+
+.delete-modal button.danger {
+  background: #d9534f;
+  color: white;
+  margin-right: 15px;
+}
+
+.delete-modal button:hover {
+  opacity: 0.85;
+}
+
+.delete-modal button:hover {
+  opacity: 0.85;
+}
+
+.delete-modal h3,p{
+  color: rgb(0, 0, 0);
 }
 .modal2 {
   max-width: 900px;
@@ -225,6 +261,17 @@
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 .modal-header {
   display: flex;
@@ -322,7 +369,7 @@
   .products-grid2 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1000px) {
-  .products-grid2 { grid-template-columns: repeat(3, 1fr); }
+  .products-grid2 { grid-template-columns: repeat(4, 1fr); }
 }
 @media (max-width: 520px) {
   .search input { width: 120px; }

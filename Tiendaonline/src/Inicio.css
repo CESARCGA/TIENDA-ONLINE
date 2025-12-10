@@ -385,6 +385,103 @@ button{
   margin-top: 8px;
 }
 
+/*modal para ver los productos con su descripcion*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-producto {
+  background: #fff;
+  width: 750px; /* MÁS ANCHO */
+  max-height: 85vh;
+  padding: 20px;
+  border-radius: 12px;
+  animation: fadeIn 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.modal-header .close {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+
+/* COLUMNA IZQUIERDA */
+.modal-left {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-img {
+  width: 100%;
+  height: 280px; /* ← tamaño fijo de la imagen */
+  border-radius: 10px;
+  object-fit: contain; /* mantiene proporción y recorta si es necesario */
+  background-color: #f2f2f2;
+}
+
+/* COLUMNA DERECHA */
+.modal-right {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+/* SOLO LA DESCRIPCIÓN HACE SCROLL */
+.modal-descripcion {
+  margin-top: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* PIE */
+.modal-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-footer button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+
+
 /* 📱 Responsive */
 @media (min-width: 720px) {
   .nav-links {

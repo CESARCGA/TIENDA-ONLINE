@@ -8,6 +8,9 @@ export default function Admin() {
   const [view, setView] = useState('products')
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+  const [productToDelete, setProductToDelete] = useState(null)
+
 
   // Search / filtro (igual que Inicio.jsx)
   const [query, setQuery] = useState('')
@@ -176,20 +179,32 @@ export default function Admin() {
     }
   }
 
-  async function handleDeleteProduct(idCandidate) {
-    const id = idCandidate.id ?? idCandidate.id_producto ?? idCandidate
-    if (!confirm('¿Eliminar este producto?')) return
+  function openDeleteModal(prod) {
+  setProductToDelete(prod)
+  setDeleteModalOpen(true)
+  }
+
+  async function confirmDeleteProduct() {
+    if (!productToDelete) return
+
+    const id = productToDelete.id ?? productToDelete.id_producto
+    
     try {
       const res = await fetch(`http://localhost:5000/DPproductos/${id}`, {
         method: 'DELETE'
       })
       if (!res.ok) throw new Error('Error eliminando producto')
+
       await fetchProducts()
+      setDeleteModalOpen(false)
+      setProductToDelete(null)
+
     } catch (err) {
       console.error(err)
       alert('No se pudo eliminar el producto')
     }
   }
+
 
   // Products list filtrada (igual que Inicio)
   const filtered = products.filter(p => {
@@ -323,7 +338,7 @@ export default function Admin() {
                     <strong>${prodPrice(p)}</strong>
                     <div className="actions">
                       <button className="small" onClick={() => openEditModal(p)}>Actualizar</button>
-                      <button className="small outline danger" onClick={() => handleDeleteProduct(p)}>Eliminar</button>
+                      <button className="small outline danger" onClick={() => openDeleteModal(p)}>Eliminar</button>
                     </div>
                   </div>
                 </div>
@@ -497,6 +512,28 @@ export default function Admin() {
                 <button type="button" className="outline" onClick={() => setPaymentModalOpen(false)}>Cancelar</button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal para confirmar eliminación */}
+      {deleteModalOpen && (
+        <div className="modal-overlay2" onClick={() => setDeleteModalOpen(false)}>
+          <div 
+            className="delete-modal slide-down"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3>¿Eliminar este producto?</h3>
+            <p>{productToDelete?.name ?? productToDelete?.nombre}</p>
+
+            <div className="buttons-modal2">
+              <button className="danger" onClick={confirmDeleteProduct}>
+                Eliminar
+              </button>
+              <button onClick={() => setDeleteModalOpen(false)}>
+                Cancelar
+              </button>
+            </div>
           </div>
         </div>
       )}

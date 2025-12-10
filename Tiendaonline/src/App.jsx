@@ -42,7 +42,7 @@ function App() {
       // Guardar usuario en localStorage
       localStorage.setItem("usuario", JSON.stringify(data));
 
-      alert(`Bienvenido, ${data.nombre}!`);
+      //alert(`Bienvenido, ${data.nombre}!`);
       //redirigir segun el rol
       if (data.rol === 1) {
         navigate("/admin");
