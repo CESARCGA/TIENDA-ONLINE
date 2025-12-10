@@ -1,0 +1,163 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+
+.mis-pedidos-container {
+  padding: 40px 20px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+
+/* ===== MENSAJE SIN PEDIDOS ===== */
+
+.sin-pedidos {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 20px;
+  color: #666;
+}
+
+
+/* ===== GRID DE TARJETAS ===== */
+
+.pedidos-grid {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+
+/* ===== TARJETA ===== */
+
+.pedido-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pedido-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ===== HEADER DE PEDIDO ===== */
+
+.pedido-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.pedido-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #222;
+}
+
+
+/* ===== ESTADOS ===== */
+
+.estado {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.estado.pagado {
+  background: #28a745;
+}
+
+.estado.pendiente {
+  background: #ffc107;
+  color: #222;
+}
+
+.estado.cancelado {
+  background: #dc3545;
+}
+
+
+/* ===== LISTA DE PRODUCTOS ===== */
+
+.pedido-productos {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-top: 10px;
+}
+
+
+/* ITEM DEL PRODUCTO */
+
+.producto-item {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 15px;
+}
+
+.producto-item img {
+  width: 65px;
+  height: 65px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.producto-info p {
+  margin: 3px 0;
+}
+
+.producto-nombre {
+  font-weight: bold;
+  color: #333;
+}
+
+.producto-cantidad {
+  font-size: 14px;
+  color: #555;
+}
+
+.producto-precio {
+  font-size: 15px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+
+/* ===== FOOTER DEL PEDIDO ===== */
+
+.pedido-footer {
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pedido-footer .fecha {
+  font-size: 14px;
+  color: #666;
+}
+
+.pedido-footer .total {
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+}
+
+
+/* ===== LOADING ===== */
+
+.loading {
+  text-align: center;
+  font-size: 20px;
+  padding: 60px 0;
+  color: #444;
+}
+
